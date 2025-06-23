@@ -4,15 +4,27 @@ class StringCalculator {
       return 0;
     }
 
-    String delimiters = ',|\n';
+    List<String> delimiters = [',', '\n'];
+
+    // Check for custom delimiter
     if (numbers.startsWith('//')) {
       final parts = numbers.split('\n');
-      final customDelimiter = RegExp.escape(parts[0].substring(2));
-      delimiters = customDelimiter;
+      final delimiter = parts[0].substring(2);
+      delimiters = [delimiter];
       numbers = parts.sublist(1).join('\n');
     }
 
-    final tokens = numbers.split(RegExp(delimiters));
-    return tokens.map(int.parse).fold(0, (sum, number) => sum + number);
+    // Split input into tokens
+    final tokens = numbers.split(RegExp(delimiters.map(RegExp.escape).join('|')));
+    final nums = tokens.where((t) => t.isNotEmpty).map(int.parse).toList();
+
+    // Check for negative numbers
+    final negatives = nums.where((n) => n < 0).toList();
+    if (negatives.isNotEmpty) {
+      throw Exception('negative numbers not allowed ${negatives.join(', ')}');
+    }
+
+    // Sum the numbers
+    return nums.fold(0, (sum, n) => sum + n);
   }
 }
