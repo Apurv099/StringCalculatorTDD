@@ -13,3 +13,5 @@ A Dart implementation of the classic **String Calculator Kata**, developed using
 ### Install Dependencies
 ```bash
 dart pub get
+dart run bin/main.dart
+dart test
