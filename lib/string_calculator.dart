@@ -3,14 +3,11 @@ class StringCalculator {
     if (numbers.isEmpty) {
       return 0;
     }
+    // Replace new lines with commas
+    numbers = numbers.replaceAll('\n', ',');
 
-    // Check if the input contains commas
-    if (numbers.contains(',')) {
-      final tokens = numbers.split(',');
-      return tokens.map(int.parse).fold(0, (sum, number) => sum + number);
-    }
-
-    // Single number case
-    return int.parse(numbers);
+    // Split by comma
+    final tokens = numbers.split(',');
+    return tokens.map(int.parse).fold(0, (sum, number) => sum + number);
   }
 }
