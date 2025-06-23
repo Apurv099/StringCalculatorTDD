@@ -7,7 +7,7 @@ class StringCalculator {
     // Check if the input contains commas
     if (numbers.contains(',')) {
       final tokens = numbers.split(',');
-      return tokens.map(int.parse).reduce((a, b) => a + b);
+      return tokens.map(int.parse).fold(0, (sum, number) => sum + number);
     }
 
     // Single number case
