@@ -11,4 +11,8 @@ void main() {
   test('returns the number itself when one number is present', () {
     expect(calculator.add('5'), equals(5));
   });
+
+  test('returns the sum of two comma separated numbers', () {
+    expect(calculator.add('1,5'), equals(6));
+  });
 }

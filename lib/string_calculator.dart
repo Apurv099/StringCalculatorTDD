@@ -1,11 +1,16 @@
 class StringCalculator {
   int add(String numbers) {
-    // If the input is empty, return 0
     if (numbers.isEmpty) {
       return 0;
     }
 
-    // Otherwise, parse the number and return
+    // Check if the input contains commas
+    if (numbers.contains(',')) {
+      final tokens = numbers.split(',');
+      return tokens.map(int.parse).reduce((a, b) => a + b);
+    }
+
+    // Single number case
     return int.parse(numbers);
   }
 }
