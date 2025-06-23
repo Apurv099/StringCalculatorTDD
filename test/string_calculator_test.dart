@@ -1,0 +1,14 @@
+import 'package:test/test.dart';
+import '../lib/string_calculator.dart';
+
+void main() {
+  final calculator = StringCalculator();
+
+  test('returns 0 for an empty string', () {
+    expect(calculator.add(''), equals(0));
+  });
+
+  test('returns the number itself when one number is present', () {
+    expect(calculator.add('5'), equals(5));
+  });
+}
